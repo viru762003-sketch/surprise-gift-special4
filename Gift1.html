@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Valentine 2026 | Mahek 🕊️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --pink: #ff4d6d;
+            --paper: #fffef0;
+            --lines: #e0e0e0;
+        }
+
+        body, html {
+            margin: 0; padding: 0; height: 100vh; width: 100%;
+            display: flex; justify-content: center; align-items: center;
+            background: #1a1a1a; overflow: hidden; font-family: 'Poppins', sans-serif;
+            perspective: 1500px;
+        }
+
+        .notebook {
+            width: 340px; height: 500px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.8s;
+        }
+
+        .page {
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+            background: var(--paper); border-radius: 5px 15px 15px 5px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+            display: none; flex-direction: column; align-items: center;
+            padding: 30px; box-sizing: border-box; color: #333;
+            transform-origin: left; border: 1px solid #ddd;
+        }
+
+        .active-page { display: flex; animation: flipPage 0.8s ease-in-out; }
+
+        @keyframes flipPage {
+            from { transform: rotateY(-90deg); opacity: 0; }
+            to { transform: rotateY(0deg); opacity: 1; }
+        }
+
+        #coverPage {
+            background: #800020;
+            color: #fcf6ba; border: 5px solid #b38728;
+            justify-content: center; text-align: center;
+        }
+        .cover-title { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin-bottom: 10px; }
+
+        .notebook-lines {
+            background-image: linear-gradient(var(--lines) 1px, transparent 1px);
+            background-size: 100% 30px; padding-left: 50px; text-align: left;
+        }
+        .notebook-lines::before {
+            content: ''; position: absolute; left: 40px; top: 0; bottom: 0;
+            width: 2px; background: #ffadad;
+        }
+
+        /* NEW: Gift Box Animations */
+        .gift-box {
+            font-size: 80px; cursor: pointer; margin: 20px 0;
+            animation: shake 1.2s infinite; display: inline-block;
+        }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(10deg); }
+            40% { transform: rotate(-10deg); }
+            60% { transform: rotate(5deg); }
+            80% { transform: rotate(-5deg); }
+        }
+        .reveal-anim { animation: popOut 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes popOut {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .heart-btn { font-size: 80px; cursor: pointer; user-select: none; margin: 20px 0; }
+        .progress-container { width: 100%; height: 8px; background: #eee; border-radius: 10px; overflow: hidden; }
+        #progressBar { width: 0%; height: 100%; background: var(--pink); }
+
+        .tag { padding: 12px; border-radius: 25px; margin: 8px 0; width: 90%; cursor: pointer; color: white; font-weight: bold; text-align: center; transition: 0.3s; }
+        .golden-ticket { background: var(--gold); padding: 20px; border: 2px dashed #4b360b; border-radius: 15px; cursor: pointer; text-align: center; }
+        
+        .photo-frame { width: 100%; height: 220px; background: #fff; border: 8px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); overflow: hidden; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-bottom: 1px solid #eee; }
+        .slogan-box { padding: 10px; font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #ff4d6d; text-align: center; min-height: 40px; }
+
+        .nav-btn { background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: auto; }
+        .dancing { font-family: 'Dancing Script', cursive; color: #ff4d6d; }
+    </style>
+</head>
+<body>
+
+    <div class="notebook">
+        <div class="page active-page" id="page0">
+            <div id="coverPage" style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius: 5px 15px 15px 5px;">
+                <p style="font-size: 1.2rem; letter-spacing: 3px;">VALENTINE 2026</p>
+                <h1 class="cover-title">Mahek's Diary</h1>
+                <div style="font-size: 40px;">💍</div>
+                <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.8;">TAP TO OPEN THE CHAPTER OF LOVE</p>
+                <button class="nav-btn" onclick="flipTo(1)" style="background: var(--gold); color: #4b360b; font-weight: bold;">OPEN DIARY</button>
+            </div>
+        </div>
+
+        <div class="page notebook-lines" id="page1">
+            <h2 class="dancing">Hey Mahek...</h2>
+            <p>This diary belongs to the most beautiful girl. But first, prove your love...</p>
+            <div class="heart-btn" id="heartBtn">❤️</div>
+            <div class="progress-container"><div id="progressBar"></div></div>
+            <p style="font-size: 0.7rem; color: #888; margin-top: 10px;">HOLD THE HEART TO UNLOCK</p>
+        </div>
+
+        <div class="page notebook-lines" id="page2">
+            <h2 class="dancing">Clearing the path...</h2>
+            <p>Hume hamari khushiyon ke beech kuch nahi chahiye:</p>
+            <div class="tag" style="background: #ff4d6d;" onclick="removeTag(this)">☁️ Sadness</div>
+            <div class="tag" style="background: #00d2ff;" onclick="removeTag(this)">💼 Overthinking</div>
+            <div class="tag" style="background: #ffd60a; color: black;" onclick="removeTag(this)">😤 Arguments</div>
+            <div class="tag" style="background: #0077b6;" onclick="removeTag(this)">📍 Distance</div>
+        </div>
+
+        <div class="page notebook-lines" id="pageGift">
+            <h2 class="dancing">A Surprise for You!</h2>
+            <p>Ek chhota sa gift meri Mahek ke liye...</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <div id="closedGift" class="gift-box" onclick="openGift()">🎁</div>
+                
+                <div id="giftReward" style="display:none;" class="reveal-anim">
+                    <div class="golden-ticket" onclick="flipTo(3)">
+                        <p style="margin:0; font-weight: bold;">YOU WON A GOLDEN TICKET! 🎟️</p>
+                        <p style="font-size: 0.7rem;">Click to see our memories</p>
+                    </div>
+                    <p class="dancing" style="margin-top:15px;">Open it, My Queen!</p>
+                </div>
+            </div>
+            <p id="giftHint" style="font-size: 0.8rem; color: #ff4d6d; text-align: center; margin-top: 20px;">(Tap the box to open it!)</p>
+        </div>
+
+        <div class="page notebook-lines" id="page3">
+            <h2 class="dancing">Golden Memories</h2>
+            <div id="photoArea" style="width:100%; margin-top: 15px;">
+                <div class="photo-frame"><img id="activeImg" src="" onclick="nextPhoto()" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Missing'"></div>
+                <div class="slogan-box" id="sloganTxt"></div>
+                <p id="countTxt" style="font-size: 0.7rem; text-align: center; color: #888;"></p>
+                <p style="font-size: 0.6rem; text-align: center;">(Tap photo for next)</p>
+            </div>
+            <button class="nav-btn" id="toLetters" style="display:none; margin-bottom: 20px;" onclick="flipTo(4)">Read My Letters ➔</button>
+        </div>
+
+        <div class="page notebook-lines" id="page4">
+            <div id="letterContent">
+                <h3 class="dancing" id="ltTitle">Hindi Touch ❤️</h3>
+                <p id="ltText" style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; line-height: 28px;">
+                    Mera sab kuch tum hi ho Mahek... In this Valentine, I promise ki raste chahe mushkil ho, mera dil hamesha tumhara rahega.
+                </p>
+            </div>
+            <div class="page-nav" style="width: 100%; display: flex; justify-content: space-between; margin-top: auto; padding-bottom: 20px;">
+                <button class="nav-btn" id="prevBtn" style="background:#ccc; display:none;" onclick="changeLetter(-1)">Back</button>
+                <button class="nav-btn" id="nextBtn" onclick="changeLetter(1)">Next Note</button>
+            </div>
+        </div>
+
+        <div class="page" id="page5" style="background: #fffef0; justify-content: center; text-align: center;">
+            <div style="font-size: 50px;">💐</div>
+            <h1 class="dancing" style="font-size: 2.5rem;">Thank You, Mahek!</h1>
+            <p style="font-size: 1.1rem; line-height: 1.6;">
+                For being my partner, my best friend, and my soulmate.<br>
+                <strong>Thank you so much</strong> for coming into my life.
+            </p>
+            <div style="font-size: 40px; margin-top: 20px;">❤️👩‍❤️‍👨✨</div>
+            <p style="margin-top: 40px; font-size: 0.8rem; color: #ff4d6d;">I LOVE YOU FOREVER</p>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        
+        const photoData = [
+            { src: "private 6.jpeg", slogan: "Tumhari ek muskurate hi meri duniya roshan ho jati hai ✨" },
+            { src: "private2.jpeg", slogan: "Har pal jo tumhare saath bitaya, wo meri zindagi ka sabse khoobsurat hissa hai ❤️" },
+            { src: "private3.jpeg", slogan: "Log kehte hain pyar ek bar hota hai, par mujhe tumse har roz hota hai 💍" },
+            { src: "private4.jpeg", slogan: "Mahek, tum sirf meri pasand nahi, meri khushi ki wajah ho 🌸" },
+            { src: "private5.jpeg", slogan: "Hamesha mere saath rehna, kyunki tumhare bina ye dil adhura hai 💖" }
+        ];
+        let photoIdx = 0;
+
+        function flipTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            let target = typeof pageId === 'number' ? 'page' + pageId : 'page' + pageId;
+            document.getElementById(target).classList.add('active-page');
+        }
+
+        // Page 1 Logic
+        const heartBtn = document.getElementById('heartBtn');
+        let progress = 0, timer;
+        heartBtn.addEventListener('pointerdown', (e) => {
+            timer = setInterval(() => {
+                progress += 2;
+                document.getElementById('progressBar').style.width = progress + "%";
+                if(progress >= 100) { clearInterval(timer); flipTo(2); }
+            }, 40);
+        });
+        window.addEventListener('pointerup', () => { 
+            clearInterval(timer); if(progress<100){ progress=0; document.getElementById('progressBar').style.width="0%";} 
+        });
+
+        // Page 2 Logic
+        let removed = 0;
+        function removeTag(el) {
+            el.style.transform = "scale(0)";
+            setTimeout(() => { el.style.display = 'none'; }, 300);
+            removed++;
+            if(removed === 4) setTimeout(() => flipTo('Gift'), 500);
+        }
+
+        // NEW: Gift Box Logic
+        function openGift() {
+            document.getElementById('closedGift').innerHTML = "✨🎁✨";
+            document.getElementById('closedGift').style.animation = "none";
+            document.getElementById('giftHint').style.display = "none";
+            
+            setTimeout(() => {
+                document.getElementById('closedGift').style.display = "none";
+                document.getElementById('giftReward').style.display = "block";
+                updatePhoto(); // Pre-load photos
+            }, 600);
+        }
+
+        // Page 3 Logic
+        function nextPhoto() {
+            photoIdx++;
+            if(photoIdx < photoData.length) {
+                updatePhoto();
+            } else {
+                document.getElementById('photoArea').innerHTML = "<h3 class='dancing' style='text-align:center; margin-top:40px;'>Hamari Yaadein Hamesha Ke Liye... ❤️</h3>";
+                document.getElementById('toLetters').style.display = 'block';
+            }
+        }
+
+        function updatePhoto() {
+            const imgEl = document.getElementById('activeImg');
+            const sloganEl = document.getElementById('sloganTxt');
+            const countEl = document.getElementById('countTxt');
+            if(imgEl) {
+                imgEl.src = photoData[photoIdx].src;
+                sloganEl.innerText = photoData[photoIdx].slogan;
+                countEl.innerText = `Memory ${photoIdx + 1} of ${photoData.length}`;
+            }
+        }
+
+        // Page 4 Logic
+        let letterStep = 1;
+        function changeLetter(dir) {
+            letterStep += dir;
+            const title = document.getElementById('ltTitle');
+            const text = document.getElementById('ltText');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            prevBtn.style.display = letterStep > 1 ? 'block' : 'none';
+
+            if(letterStep === 1) {
+                title.innerText = "Hindi Touch ❤️";
+                text.innerText = "Mera sab kuch tum hi ho Mahek... In this Valentine, I promise ki raste chahe mushkil ho, mera dil hamesha tumhara rahega.";
+                nextBtn.innerText = "Next Note";
+            } else if(letterStep === 2) {
+                title.innerText = "Gujarati Dil Thi ✨";
+                text.innerText = "વહાલી Mahek, તું મળી ને તો જિંદગી માં રંગો ભરાઈ ગયા. તારા વગર બધું જ અધૂરું છે. હું વચન આપું છું કે હું હંમેશા તારી સાથે હોઈશ. ❤️💍";
+                nextBtn.innerText = "Next Note";
+            } else if(letterStep === 3) {
+                title.innerText = "Forever Promise 💍";
+                text.innerText = "You are my Soulmate, my Happiness, and my Everything. Thank you for being you! Happy Valentine's Day Mahek! ✨💖💐";
+                nextBtn.innerText = "Finish ➔";
+            } else {
+                flipTo(5);
+            }
+        }
+    </script>
+</body>
+</html>
